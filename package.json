@@ -1,0 +1,14 @@
+{
+  "name": "catan-original-mp",
+  "version": "1.0.0",
+  "description": "P. Csurgay's 2004 'Settlers from Catan' applet in the browser, in its original look, with network multiplayer",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\"",
+    "test:e2e": "node tests/e2e/run.mjs",
+    "serve": "npx serve -l 8080 ."
+  },
+  "author": "P. Csurgay",
+  "license": "MIT"
+}

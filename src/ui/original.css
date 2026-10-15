@@ -1,0 +1,268 @@
+/* The "original" look: the 2004 applet as Java 1.4 drew it -- Swing's Metal
+   look and feel with its default "Steel" theme, at the applet's own pixel
+   coordinates (1024x768 panel under a 21 px menu bar). Colours, border
+   profiles and sizes were measured from the original applet running in a
+   JVM (scratch screenshots), not guessed.
+     secondary3 #ccc (control), secondary2 #999, secondary1 #666
+     primary1 #669, primary2 #99c, primary3 #ccf
+   Dialog was Arial on the Windows of 2004; Dialog bold 12 everywhere. */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+  overflow: hidden;
+}
+
+#applet {
+  position: relative;
+  width: 1024px;
+  height: 789px;
+  background: #ccc;
+  overflow: hidden;
+  transform-origin: 0 0;
+  font: bold 12px Arial, Helvetica, "Liberation Sans", sans-serif;
+  color: #000;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------------- menu bar */
+
+#o-menubar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1024px;
+  height: 20px;
+  border-bottom: 1px solid #999;
+  display: flex;
+  align-items: stretch;
+  z-index: 50;
+}
+.o-menu-title {
+  position: relative;
+  height: 20px;
+  line-height: 21px;
+  padding: 0 6px 0 7px;
+  white-space: nowrap;
+}
+.o-menu-title.open {
+  background: #99c;
+  box-shadow: inset 0 2px 0 #ccc, inset 1px 0 0 #ccc;
+}
+
+.o-popup {
+  position: absolute;
+  z-index: 60;
+  background: #ccc;
+  border: 1px solid #669;
+  box-shadow: inset 1px 1px 0 #fff;
+  padding: 1px 0 2px 0;
+  white-space: nowrap;
+}
+.o-mi {
+  position: relative;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px 0 22px;
+}
+.o-mi.has-icon { height: 29px; }
+.o-mi.plain.has-icon { padding-left: 11px; }
+.o-mi.armed { background: #99c; }
+.o-mi.disabled { color: #999; }
+.o-mi img.o-mi-icon { width: 32px; height: 24px; margin-right: 5px; }
+.o-mi.indicated.has-icon { padding-left: 24px; }
+.o-mi .o-ind {
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  margin-top: -5px;
+  width: 8px;
+  height: 8px;
+  background: #ccc;
+  box-shadow: inset 1px 1px 0 #666, inset -1px -1px 0 #fff, 1px 1px 0 #fff;
+}
+.o-mi .o-ind.radio { border-radius: 50%; box-shadow: inset 1px 1px 0 #666, inset -1px -1px 0 #fff; }
+.o-mi .o-ind.on::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 4px;
+  height: 4px;
+  background: #000;
+}
+.o-mi .o-ind.radio.on::after { border-radius: 50%; }
+.o-mi .o-arrow {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  margin-top: -4px;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid #000;
+}
+.o-sep {
+  height: 2px;
+  margin: 1px 0;
+  border-top: 1px solid #669;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- the panel (S.java) */
+
+#o-s {
+  position: absolute;
+  left: 0;
+  top: 21px;
+  width: 1024px;
+  height: 768px;
+}
+#o-board { position: absolute; left: 0; top: 0; }
+.o-abs { position: absolute; }
+
+/* JButton with an image icon. Border profiles as measured:
+   enabled  top/left 140,255,217  bottom/right (outside in) 255,140,179
+   disabled top/left 153,192      bottom/right 192,153,191 */
+.o-btn {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  box-shadow:
+    inset 1px 1px 0 rgb(140,140,140), inset 2px 2px 0 #fff, inset 3px 3px 0 rgb(217,217,217),
+    inset -1px -1px 0 #fff, inset -2px -2px 0 rgb(140,140,140), inset -3px -3px 0 rgb(179,179,179);
+  font: inherit;
+  color: #000;
+  cursor: default;
+}
+.o-btn:disabled {
+  box-shadow:
+    inset 1px 1px 0 rgb(153,153,153), inset 2px 2px 0 rgb(192,192,192),
+    inset -1px -1px 0 rgb(192,192,192), inset -2px -2px 0 rgb(153,153,153), inset -3px -3px 0 rgb(191,191,191);
+}
+.o-btn:not(:disabled):active { background: #999; }
+.o-btn img { display: block; pointer-events: none; }
+.o-btn.focused:not(:disabled) img { outline: 1px solid #99c; outline-offset: 1px; }
+.o-btn.text { padding: 0 14px; height: 26px; }
+.o-btn.focused.text:not(:disabled) span { outline: 1px solid #99c; outline-offset: 1px; }
+
+/* Cards: plain images; the deck component did the overlap and the raise. */
+.o-card { position: absolute; width: 58px; height: 91px; display: block; }
+.o-label { position: absolute; display: block; }
+
+#o-trade { position: absolute; background: rgb(20,180,20); z-index: 20; }
+
+/* ---------------------------------------------------------------- JOptionPane, Metal decorated JDialog */
+
+#o-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+}
+.o-dialog {
+  position: absolute;
+  background: #ccc;
+  border: 4px solid #669;
+  box-sizing: border-box;
+}
+.o-dialog.warning { border-color: rgb(153,102,51); }
+.o-dlg-title {
+  height: 21px;
+  border-bottom: 1px solid #99c;
+  background-color: #ccf;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  white-space: nowrap;
+}
+.o-dialog.warning .o-dlg-title { background-color: rgb(255,204,153); border-bottom-color: rgb(204,153,102); }
+.o-bumps { flex: 1; align-self: stretch; margin: 4px 4px 4px 6px; }
+.o-close {
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  background: #ccc;
+  box-shadow: inset 1px 1px 0 #fff;
+  position: relative;
+}
+.o-close::before, .o-close::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 6px;
+  width: 10px;
+  height: 2px;
+  background: #000;
+  transform: rotate(45deg);
+}
+.o-close::after { transform: rotate(-45deg); }
+.o-dlg-body { padding: 9px 12px 12px 12px; display: flex; align-items: flex-start; }
+.o-dlg-icon { margin-right: 18px; }
+.o-dlg-main { display: flex; flex-direction: column; }
+.o-dlg-msg { font: bold 12px Arial, Helvetica, sans-serif; min-height: 15px; }
+.o-dlg-msg:empty { display: none; }
+.o-dlg-buttons { display: flex; gap: 6px; margin-top: 9px; justify-content: center; }
+.o-dlg-buttons .o-btn { position: relative; }
+.o-dlg-buttons .o-btn.icon { padding: 6px; }
+
+/* ---------------------------------------------------------------- the network lobby (a JDialog with a form) */
+
+.o-frame { min-width: 380px; z-index: 110; }
+.o-frame-body { padding: 10px 14px 12px 14px; display: flex; flex-direction: column; gap: 7px; }
+.o-field { display: flex; align-items: center; gap: 10px; }
+.o-field-label { width: 110px; flex: none; }
+.o-input {
+  font: bold 12px Arial, Helvetica, sans-serif;
+  height: 20px;
+  box-sizing: border-box;
+  border: 0;
+  padding: 0 4px;
+  background: #fff;
+  color: #000;
+  min-width: 220px;
+  box-shadow: inset 1px 1px 0 #666, inset -1px -1px 0 #fff, 1px 1px 0 #fff;
+  outline: none;
+  user-select: text;
+  -webkit-user-select: text;
+}
+select.o-input { background: #ccc; padding: 0 2px; }
+.o-input:focus { box-shadow: inset 1px 1px 0 #666, inset -1px -1px 0 #fff, 0 0 0 1px #99c; }
+.o-code-input { text-transform: uppercase; letter-spacing: 2px; width: 90px; min-width: 0; }
+.o-radios { display: flex; gap: 12px; }
+.o-radio, .o-check { display: inline-flex; align-items: center; gap: 3px; }
+.o-radio input, .o-check input { margin: 0; accent-color: #669; }
+.o-code { font: bold 22px "Courier New", Courier, monospace; letter-spacing: 3px; user-select: text; -webkit-user-select: text; }
+.o-hint { font-weight: normal; color: #333; max-width: 380px; }
+.o-seats {
+  display: flex; flex-direction: column; gap: 2px; padding: 4px 6px;
+  box-shadow: inset 1px 1px 0 #999, inset -1px -1px 0 #fff;
+}
+.o-seat { display: flex; align-items: center; gap: 8px; min-height: 26px; }
+.o-seat-name { flex: 1; }
+.o-seat .o-btn.text, .o-net-buttons .o-btn.text { position: relative; }
+.o-seat .o-btn.text { height: 22px; padding: 0 8px; }
+.o-net-message { min-height: 15px; color: #003; font-weight: normal; max-width: 380px; }
+.o-net-message.error { color: #900; font-weight: bold; }
+.o-net-buttons { display: flex; gap: 6px; justify-content: center; margin-top: 4px; }
+.o-net-buttons.left { justify-content: flex-start; margin-top: 0; }
+
+/* The room in the free corner above the player strip. */
+#o-net { left: 12px; top: 40px; width: 300px; font: bold 12px Arial, Helvetica, sans-serif; pointer-events: none; }
+#o-net .o-net-head { margin-bottom: 4px; }
+#o-net .o-net-row { display: flex; align-items: center; gap: 4px; height: 18px; white-space: nowrap; overflow: hidden; font-weight: normal; }
+#o-net .o-net-row canvas { flex: none; }
+#o-net .o-net-row .turn { font-weight: bold; }
