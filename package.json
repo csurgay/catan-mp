@@ -1,5 +1,5 @@
 {
-  "name": "catan-original-mp",
+  "name": "catan-mp",
   "version": "1.0.0",
   "description": "P. Csurgay's 2004 'Settlers from Catan' applet in the browser, in its original look, with network multiplayer",
   "type": "module",

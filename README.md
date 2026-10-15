@@ -1,4 +1,8 @@
-# Settlers from Catan (2004) – eredeti nézet, hálózati játékkal
+# catan-mp – Settlers from Catan (2004), hálózati játékkal
+
+Klaus Teuber's Settlers of Catan boardgame with computer players and multiplayers
+
+**Játék:** https://csurgay.github.io/catan-mp/
 
 P. Csurgay 2004-es Java appletje böngészőben, **pontosan az eredeti kinézettel
 és kezeléssel**, egyedül a gép ellen vagy **többen, hálózaton át**. Nincs

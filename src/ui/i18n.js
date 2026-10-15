@@ -305,7 +305,7 @@ const HU = {
 
 export const TABLES = { en: EN, hu: HU };
 export const LANGS = ['hu', 'en'];
-const LANG_KEY = 'catan-original-mp.lang';
+const LANG_KEY = 'catan-mp.lang';
 
 function detectLang() {
   try {

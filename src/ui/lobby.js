@@ -23,8 +23,8 @@ import { paintHaz } from './paint.js';
 import { t, tError } from './i18n.js';
 
 const HEARTBEAT_MS = 4000;
-const NAME_KEY = 'catan-original-mp.name';
-const TOKEN_KEY = 'catan-original-mp.token'; // sessionStorage, per tab: a reload reconnects
+const NAME_KEY = 'catan-mp.name';
+const TOKEN_KEY = 'catan-mp.token'; // sessionStorage, per tab: a reload reconnects
 const TRANSPORTS = ['auto', 'relay', 'peerjs', 'local'];
 
 function readStored(storage, key) { try { return storage.getItem(key) || ''; } catch { return ''; } }
@@ -62,7 +62,7 @@ export function createLobby({ applet, attach, detach, stopGame, backToSolo }) {
       broker: brokerOverride, iceTransportPolicy, ...turnOverride, onStatus: cb,
     }), { name: 'p2p' });
     const relay = (cb) => Object.assign(createRelayTransport({ brokers: relayBrokers, onStatus: cb }), { name: 'relay' });
-    if (state.transport === 'local') return createBroadcastTransport({ prefix: 'catan-original-mp' });
+    if (state.transport === 'local') return createBroadcastTransport({ prefix: 'catan-mp' });
     if (state.transport === 'relay') return relay(onStatus);
     if (state.transport === 'peerjs') return peer(onStatus);
     return createMultiTransport([relay(null), peer(null)], { onStatus });

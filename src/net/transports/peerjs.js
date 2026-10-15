@@ -2,7 +2,7 @@
 // signalling. By default the free public PeerJS broker (0.peerjs.com) is
 // used; `broker` points at another PeerServer (a self-hosted one, or the
 // local one the e2e test starts). The host's PeerJS id is
-// `catan-orig-<ROOMCODE>`; joiners connect to that id. Game data then flows
+// `catan-mp-<ROOMCODE>`; joiners connect to that id. Game data then flows
 // peer-to-peer; the broker only ever sees the handshake.
 //
 // NAT traversal: besides Google's STUN servers the ICE config lists the
@@ -28,7 +28,7 @@ import { Emitter } from '../emitter.js';
 
 export const PEERJS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js';
 export const PEERJS_INTEGRITY = 'sha384-nlUQ8ZqCbvStErob+biJNzSgltf6urV3VGqhfIfzhmg9RXmpeRm76ELw0pYnKlTR';
-export const ID_PREFIX = 'catan-orig-'; // apart from the modern port's rooms (catan-hu-)
+export const ID_PREFIX = 'catan-mp-'; // apart from the modern port's rooms (catan-hu-)
 const BROKER_TIMEOUT_MS = 15000;
 const HOST_TIMEOUT_MS = 20000;
 

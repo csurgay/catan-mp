@@ -28,7 +28,7 @@ export const DEFAULT_BROKERS = [
   'wss://broker.hivemq.com:8884/mqtt',
   'wss://test.mosquitto.org:8081',
 ];
-export const TOPIC_PREFIX = 'catan-orig/v1'; // apart from the modern port's rooms (catan-hu/v1)
+export const TOPIC_PREFIX = 'catan-mp/v1'; // apart from the modern port's rooms (catan-hu/v1)
 const CONNECT_TIMEOUT_MS = 8000;
 const DIAL_TIMEOUT_MS = 8000;
 
